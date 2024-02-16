@@ -1,9 +1,12 @@
-import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post, Put, UseInterceptors } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
 import { UpdatePutUSerDTO } from './dto/update-put-user.dto';
 import { UpdatePatchUSerDTO } from './dto/update-patch-user.dto';
 import { UserService } from './user.service';
+import { LogInterceptor } from 'src/interceptors/log.interceptor';
 
+
+@UseInterceptors(LogInterceptor)
 @Controller('users')
 export class UserController {
 
@@ -26,7 +29,6 @@ export class UserController {
 
   @Put(':id')
   async update(@Body() data: UpdatePutUSerDTO, @Param('id', ParseIntPipe) id: number) {
-    console.log(data.birthAt)
 
     return this.userService.update(id, data)
   }

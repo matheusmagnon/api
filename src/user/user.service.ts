@@ -34,7 +34,7 @@ export class UserService {
 
     async update(id: number, { birthAt, email, name, password }: UpdatePutUSerDTO) {
 
-        this.exists(id)
+        await this.exists(id)
 
 
         if (!birthAt) {
@@ -52,7 +52,8 @@ export class UserService {
 
     async updatePartial(id: number, { birthAt, email, name, password }: UpdatePatchUSerDTO) {
 
-        this.exists(id)
+        await this.exists(id)
+
 
         const data: any = {}
 
@@ -79,7 +80,7 @@ export class UserService {
 
     async delete(id: number) {
 
-        this.exists(id)
+        await this.exists(id)
         return this.prisma.user.delete({
             where: {
                 id
