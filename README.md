@@ -41,3 +41,6 @@ $ npm run test:cov
 ``` -->
 
 ## Support
+
+run initDB.sql
+npx prisma migrate dev 
