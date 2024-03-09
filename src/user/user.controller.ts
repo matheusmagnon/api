@@ -4,6 +4,7 @@ import { UpdatePutUSerDTO } from './dto/update-put-user.dto';
 import { UpdatePatchUSerDTO } from './dto/update-patch-user.dto';
 import { UserService } from './user.service';
 import { LogInterceptor } from 'src/interceptors/log.interceptor';
+import { ParamId } from 'src/interceptors/decorators/param-id.decorator';
 
 
 @UseInterceptors(LogInterceptor)
@@ -23,7 +24,8 @@ export class UserController {
   }
 
   @Get(':id')
-  async showId(@Param('id', ParseIntPipe) id: number) {
+  async showId(@ParamId('id', ParseIntPipe) id: number) {
+    // ParamId example of cuistom decorators
     return this.userService.showId(id)
   }
 
