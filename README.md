@@ -1,4 +1,4 @@
-# Getting started with Jamango
+# Getting started with API Nestjs
 
 1. **Clone the Repository**: Start by cloning the project repository to your local machine:
 
