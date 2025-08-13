@@ -38,7 +38,6 @@ export class AuthController {
   @UseGuards(AuthGuard)
   @Post("me")
   async me(@User() user) {
-    // console.log(body.token);
     return { user };
     // return this.authService.checkToken(token?.split(' ')[1]);
   }
