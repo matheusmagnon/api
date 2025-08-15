@@ -9,9 +9,11 @@ import {
   ThrottlerStorageService,
 } from "@nestjs/throttler";
 import { APP_GUARD } from "@nestjs/core";
+import { ConfigModule } from "@nestjs/config";
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
     ThrottlerModule.forRoot({
       throttlers: [
         {
