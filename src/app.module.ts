@@ -29,12 +29,12 @@ import { PugAdapter } from "@nestjs-modules/mailer/dist/adapters/pug.adapter";
     forwardRef(() => AuthModule),
     MailerModule.forRoot({
       transport: {
-        host: "smtp.gmail.com",
-        port: 587,
+        host: process.env.MAILER_HOST,
+        port: Number(process.env.MAILER_PORT),
         secure: false,
         auth: {
-          user: "matheusmagnon@gmail.com",
-          pass: "xthl scfm ogtu phef",
+          user: process.env.MAILER_AUTH_USER,
+          pass: process.env.MAILER_AUTH_PASS,
         },
       },
       defaults: {
