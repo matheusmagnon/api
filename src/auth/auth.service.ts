@@ -115,19 +115,14 @@ export class AuthService {
   }
 
   async reset(password: string, token: string) {
-    console.log("?????", token, password);
     try {
       const data = this.jwtService.verify(token, {
         issuer: "forget",
         audience: "users",
       });
 
-      console.log("id", data.id);
-
       const salt = await bcrypt.genSalt();
       password = await bcrypt.hash(password, salt);
-
-      console.log("password");
 
       const user = await this.prisma.user.update({
         where: {
@@ -138,10 +133,7 @@ export class AuthService {
         },
       });
 
-      console.log(user);
-
       return this.createToken(user);
-      // return data;
     } catch (error) {
       throw new BadRequestException(error);
     }
