@@ -81,12 +81,14 @@ export class AuthService {
 
     return this.createToken(user);
   }
+
   async forget(email: string) {
     const user = this.prisma.user.findFirst({
       where: {
         email: email,
       },
     });
+
     if (!user) {
       throw new UnauthorizedException("Email está incorreto.");
     }
@@ -102,6 +104,7 @@ export class AuthService {
         audience: "users",
       }
     );
+
     await this.mailer.sendMail({
       to: "matheusmagnon@gmail.com",
       subject: "Recuperação de senha",
